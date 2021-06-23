@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/addess_book_form.css">
     <title>Address Book Form</title>
 </head>
 <body>
-    
+    <header class="header-content">
+        <div class="logo-content">
+            <img src="../assets/address_book.PNG" alt="address_book_logo">
+            <div>
+                <span class="address-text">Address</span>
+                <span class="address-text book-text">Book</span>
+            </div>
+        </div>
+        
+    </header>
+    <div class="main-content">
+        <form action="">
+            <div class="address">Person Address Form</div>
+            <img src="../assets/cancel.PNG" alt="cancel-logo">
+            <div class="row-content">
+                <label class="label-text" for="full-name">Full Name</label>
+                <input class="input" type="text" id="full-name" name="full-name" required>
+            </div>
+            <div class="row-content">
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" id="phone-number" name="phone-number">
+            </div>
+            <div class="row-content">
+                <label for="address">Address</label>
+                <textarea class="address" name="address" id="address" style="height:100px"></textarea>
+            </div>
+            <div class="row-content">
+                <span class="city">
+                    <label for="city">City</label>
+                    <select name="city" id="city">
+                        <option selected>Select City</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="pune">Pune</option>
+                        <option value="nagpur">Nagpur</option>
+                        <option value="nashik">Nashik</option>
+                    </select>
+                </span>
+                <span class="state">
+                    <label for="state">State</label>
+                    <select name="state" id="state">
+                        <option selected>Select State</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="goa">Goa</option>
+                        <option value="tamilnadu">Tamilnadu</option>
+                    </select>
+                </span>
+                <span class="zipcode">
+                    <label for="zipcode">Zipcode</label>
+                    <input type="input" id="zipcode" name="zipcode">
+                </span>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
