@@ -19,46 +19,54 @@
         
     </header>
     <div class="main-content">
-        <form action="">
-            <div class="address">Person Address Form</div>
-            <img src="../assets/cancel.PNG" alt="cancel-logo">
-            <div class="row-content">
-                <label class="label-text" for="full-name">Full Name</label>
-                <input class="input" type="text" id="full-name" name="full-name" required>
+        <form class="form" action="">
+            <div class="form-head">
+                <div class="form-heading">Person Address Form</div>
+                <img class="cancel-logo" src="../assets/cancel.PNG" alt="cancel-logo">
             </div>
-            <div class="row-content">
-                <label for="phone-number">Phone Number</label>
-                <input type="tel" id="phone-number" name="phone-number">
+            <div class="form-body">
+                <div class="row-content">
+                    <label class="fullname-label" for="full-name">Full Name</label>
+                    <input class="input" type="text" id="full-name" name="full-name" required>
+                </div>
+                <div class="row-content">
+                    <label class="phone-label" for="phone-number">Phone Number</label>
+                    <input type="tel" id="phone-number" name="phone-number">
+                </div>
+                <div class="row-content">
+                    <label class="address-label" for="address">Address</label>
+                    <textarea class="address" name="address" id="address" style="height:100px"></textarea>
+                </div>
+                <div class="row-content">
+                    <span class="city">
+                        <label for="city">City</label>
+                        <select name="city" id="city">
+                            <option selected>Select City</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="pune">Pune</option>
+                            <option value="nagpur">Nagpur</option>
+                            <option value="nashik">Nashik</option>
+                        </select>
+                    </span>
+                    <span class="state">
+                        <label for="state">State</label>
+                        <select name="state" id="state">
+                            <option selected>Select State</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="goa">Goa</option>
+                            <option value="tamilnadu">Tamilnadu</option>
+                        </select>
+                    </span>
+                    <span class="zipcode">
+                        <label for="zipcode">Zipcode</label>
+                        <input type="input" id="zipcode" name="zipcode">
+                    </span>
+                </div>
             </div>
-            <div class="row-content">
-                <label for="address">Address</label>
-                <textarea class="address" name="address" id="address" style="height:100px"></textarea>
-            </div>
-            <div class="row-content">
-                <span class="city">
-                    <label for="city">City</label>
-                    <select name="city" id="city">
-                        <option selected>Select City</option>
-                        <option value="mumbai">Mumbai</option>
-                        <option value="pune">Pune</option>
-                        <option value="nagpur">Nagpur</option>
-                        <option value="nashik">Nashik</option>
-                    </select>
-                </span>
-                <span class="state">
-                    <label for="state">State</label>
-                    <select name="state" id="state">
-                        <option selected>Select State</option>
-                        <option value="maharashtra">Maharashtra</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="goa">Goa</option>
-                        <option value="tamilnadu">Tamilnadu</option>
-                    </select>
-                </span>
-                <span class="zipcode">
-                    <label for="zipcode">Zipcode</label>
-                    <input type="input" id="zipcode" name="zipcode">
-                </span>
+            <div class="add-reset">
+                <button type="add" class="button addButton" id="addButton">Add</button>
+                <button type="reset" class="button resetButton" id="reset">Reset</button>
             </div>
         </form>
     </div>
