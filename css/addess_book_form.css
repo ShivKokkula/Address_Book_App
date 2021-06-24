@@ -170,4 +170,22 @@ select{
 textarea {
     width: 100%;
     resize: none;
-  }
+}
+.error-text{
+    color: red;
+    font-style: italic;
+    letter-spacing: 0px;
+    padding: 5px;
+}
+.error-tel{
+    color: red;
+    font-style: italic;
+    letter-spacing: 0px;
+    padding: 5px;
+}
+.error-address{
+    color: red;
+    font-style: italic;
+    letter-spacing: 0px;
+    padding: 5px;
+}
