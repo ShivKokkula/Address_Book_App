@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
     const addressError = document.querySelector('.error-address');
 
     address.addEventListener('input',function(){
-        let addressRegex = RegExp('(^[\w](( \w+)|(\w*))*$)|(^\w$');
+        let addressRegex = RegExp('[5-9]{1}[0-9]{9}');
 
         if (addressRegex.test(address.value)) {
             addressError.textContent = ""; 
@@ -50,4 +50,28 @@ window.addEventListener('DOMContentLoaded',(event) => {
             addressError.textContent = "Invalid address";
         }
     });
-})
+});
+
+const save = () =>{
+    let AddressBookcontact = new AddressBookData();
+    AddressBookcontact.name = document.querySelector('#full-name').value;
+    AddressBookcontact.phoneNum = document.querySelector('#phone-number').value;
+    AddressBookcontact.address = document.querySelector('#address').value;
+    AddressBookcontact.city = document.querySelector('#city').value;
+    AddressBookcontact.state = document.querySelector('#state').value;
+    AddressBookcontact.zipcode = document.querySelector('#zipcode').value;
+    alert(AddressBookcontact.toString());
+}
+
+const reset = () =>{
+    setValue('#full-name','');
+    setValue('#phone-number','');
+    setValue('#address','');
+    setValue('#city','mumbai');
+    setValue('#state','maharashtra');
+    setValue('#zipcode','');
+}
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value  = value;
+}
