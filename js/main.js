@@ -2,16 +2,15 @@ window.addEventListener('DOMContentLoaded',(event) => {
     const name = document.querySelector('#full-name');
     const nameError = document.querySelector('.error-text');
     name.addEventListener('input', function(){
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if (nameRegex.test(name.value)) {
+        try {
+            (new AddressBookData()).name = name.value;
             nameError.textContent = "";
-        } else if (!name.value || name.value == null || name.value == "" || name.value.length == 0){
-            nameError.textContent = "";
-        } 
-        else {
-            nameError.textContent = "Invalid name";
+        } catch (e) {
+            nameError.textContent = e;
         }
-
+        if (!name.value || name.value == null || name.value == "" || name.value.length == 0){
+            nameError.textContent = "";
+        }
     });
 
     const phoneNum = document.querySelector('#phone-number');
@@ -66,7 +65,8 @@ const createAddressBookContact = () => {
     try {
         AddressBookContact.name = document.querySelector('#full-name').value;
     } catch (e) {
-        return;
+        setTextvalue('.error-text',e);
+        throw e;
     }
     
     AddressBookContact.phoneNum = document.querySelector('#phone-number').value;
@@ -100,4 +100,9 @@ const reset = () =>{
 const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value  = value;
+}
+
+const setTextvalue = (id,value) =>{
+    const element = document.querySelector(id);
+    element.textContent = value;
 }

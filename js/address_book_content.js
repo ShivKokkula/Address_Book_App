@@ -15,7 +15,7 @@ class AddressBookData{
         let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if (nameRegex.test(name)) 
             this._name = name;
-        else throw 'Name is incorrect';
+        else throw 'Invalid name';
     }
 
     get phoneNum(){
@@ -50,7 +50,12 @@ class AddressBookData{
         return this._zipcode;
     }
     set zipcode(zipcode){
-        this._zipcode = zipcode;
+        let zipcodeRegex = RegExp('^[1-9]{1}[0-9]{2,6}$');
+        if (zipcodeRegex.test(zipcode)) {
+            this._zipcode = zipcode;
+        } else {
+            throw "Invalid Zipcode";
+        }
     }
 
     toString(){
