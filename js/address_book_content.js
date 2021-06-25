@@ -59,7 +59,7 @@ class AddressBookData{
     }
 
     toString(){
-        return "id = " + this.id + " name = " + this.name + "Phone num = " + this.phoneNum +
+        return "id = " + this.id + " name = " + this.name + " Phone num = " + this.phoneNum +
          " address = " + this.address + " city = " + this.city + " state = " + this.state +
          " zipcode = " + this.zipcode;
     }

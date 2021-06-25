@@ -55,7 +55,10 @@ const save = () =>{
     try {
         let addressBookContact = createAddressBookContact();
         createandUpdateStorage(addressBookContact);
+        window.location.replace('../home.html');
+        //document.getElementById("demo").innerHTML = addressBookContact.pop().toString();
     } catch (e) {
+        console.log(e)
         return;
     }
 }
@@ -85,7 +88,7 @@ function createandUpdateStorage(addressBookContact) {
     } else {
         addressBookContactList = [addressBookContact];
     }
-    alert(addressBookContactList.toString());
+    alert(addressBookContactList.pop().toString());
     localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookContactList));
 } 
 
