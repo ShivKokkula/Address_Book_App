@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Address Book Home Page</title>
 </head>
 <body>
-    <h3>Home Page</h3>
-    <h4 id='demo'></h4>
+    <header class="header-content">
+        <div class="logo-content">
+            <img src="../assets/address_book.PNG" alt="address_book_logo">
+            <div>
+                <span class="address-text">Address</span>
+                <span class="address-text book-text">Book</span>
+            </div>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="header-content">
+            <div class="person-details-text">
+                Person Details
+                <div class="person-count">10</div>
+            </div>
+            <a href="../pages/address_book_form.html" class="add-button">
+                <span class="plus-sign">+</span>
+                <span class="add-person-text">Add Person</span> 
+            </a>
+        </div>
+        <div class="table-main">
+            <table id="table-display" class="table"></table>
+        </div>
+    </div>
 </body>
     <script src="../js/main.js"></script>
     <script src="../js/address_book_content.js"></script>

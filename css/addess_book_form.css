@@ -23,7 +23,7 @@ header{
     justify-content: center;
     align-items: center;
     border: 0px solid blue;
-    margin: 0px;
+    margin: 10px 20px;
     padding: 0 5px;
 }
 .logo-content img{
