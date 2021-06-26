@@ -55,10 +55,7 @@ const save = () =>{
     try {
         let addressBookContact = createAddressBookContact();
         createandUpdateStorage(addressBookContact);
-        window.location.replace('../home.html');
-        //document.getElementById("demo").innerHTML = addressBookContact.pop().toString();
     } catch (e) {
-        console.log(e)
         return;
     }
 }
