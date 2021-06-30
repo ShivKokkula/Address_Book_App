@@ -1,3 +1,6 @@
+let isUpdate = false;
+let addressBookDataObj = {};
+
 window.addEventListener('DOMContentLoaded',(event) => {
     const name = document.querySelector('#full-name');
     const nameError = document.querySelector('.error-text');
@@ -49,6 +52,8 @@ window.addEventListener('DOMContentLoaded',(event) => {
             addressError.textContent = "Invalid address";
         }
     });
+
+    checkForUpdate();
 });
 
 const save = () =>{
@@ -88,6 +93,23 @@ function createandUpdateStorage(addressBookContact) {
     alert(addressBookContactList.toString());
     localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookContactList));
 } 
+
+const checkForUpdate = () =>{
+    const addressBookDataJSON = localStorage.getItem('editcontact');
+    isUpdate = addressBookDataJSON ? true : false;
+    if(!isUpdate) return;
+    addressBookDataObj = JSON.parse(addressBookDataJSON);
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#full-name', addressBookDataObj._name);
+    setValue('#phone-number', addressBookDataObj._phoneNum);
+    setValue('#address', addressBookDataObj._address);
+    setValue('#city', addressBookDataObj._city);
+    setValue('#state', addressBookDataObj._state);
+    setValue('#zipcode', addressBookDataObj._zipcode);
+}
 
 const reset = () =>{
     setValue('#full-name','');

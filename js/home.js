@@ -55,3 +55,10 @@ const remove = (node) => {
     document.querySelector('.contact-count').textContent = addressBookList.length;
     createInnerHTML();
 }
+
+const update = (node) => {
+    let addBookData = addressBookList.find(contact => contact._id == node.id);
+    if(!addBookData) return;
+    localStorage.setItem('editcontact',JSON.stringify(addBookData));
+    window.location.replace("../pages/address_book_form.html");
+}
