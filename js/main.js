@@ -85,7 +85,7 @@ function createandUpdateStorage(addressBookContact) {
     } else {
         addressBookContactList = [addressBookContact];
     }
-    alert(addressBookContactList.pop().toString());
+    alert(addressBookContactList.toString());
     localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookContactList));
 } 
 
