@@ -68,7 +68,7 @@ const createAddressBookContact = () => {
         setTextvalue('.error-text',e);
         throw e;
     }
-    
+    AddressBookContact._id = new Date().getTime();
     AddressBookContact.phoneNum = document.querySelector('#phone-number').value;
     AddressBookContact.address = document.querySelector('#address').value;
     AddressBookContact.city = document.querySelector('#city').value;
