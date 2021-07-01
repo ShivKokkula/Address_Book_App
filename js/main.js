@@ -4,15 +4,15 @@ let addressBookDataObj = {};
 window.addEventListener('DOMContentLoaded',(event) => {
     const name = document.querySelector('#full-name');
     name.addEventListener('input', function(){
+        if (!name.value || name.value == null || name.value == "" || name.value.length == 0){
+            setTextvalue('.error-text',"");
+            return;
+        }
         try {
             checkFullName(name.value);
             setTextvalue('.error-text',"");
         } catch (e) {
             setTextvalue('.error-text',e);
-        }
-        if (!name.value || name.value == null || name.value == "" || name.value.length == 0){
-            setTextvalue('.error-text',"");
-            return;
         }
     });
 
@@ -46,13 +46,34 @@ const save = (event) =>{
     event.preventDefault();
     event.stopPropagation();
     try {
-        setAddressBookObjt()
-        createandUpdateStorage();
-        resetForm();
-        window.location.replace(site_properties.home_page);
+        setAddressBookObjt();
+        if (site_properties.use_local_storage.match("true")) {
+            createandUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        } else {
+            createOrUpdateAddressBook();
+        }
+        
     } catch (e) {
         return;
     }
+}
+const createOrUpdateAddressBook = () => {
+    let postURL = site_properties.server_url;
+    let methodCall = "POST";
+    if (isUpdate) {
+        methodCall = "PUT";
+        postURL = postURL + addressBookDataObj.id.toString();
+    }
+    makeServiceCall(methodCall, postURL, true, addressBookDataObj)
+        .then(responseText => {
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        })
+        .catch(error => {
+            throw error;
+        });
 }
 
 const setAddressBookObjt = () => {
