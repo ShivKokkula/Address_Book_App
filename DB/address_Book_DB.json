@@ -1,0 +1,22 @@
+{
+    "AddressBookDB":[
+        {
+            "id": 1,
+            "_fullname": "Mark",
+            "_phonenum": "9797979799",
+            "_address": "9797979799",
+            "_city": "Mumbai",
+            "_state": "Maharashtra",
+            "_zipcode": "421305"
+        },
+        {
+            "id": 2,
+            "_fullname": "John",
+            "_phonenum": "9797979799",
+            "_address": "9797979799",
+            "_city": "Pune",
+            "_state": "Maharashtra",
+            "_zipcode": "421305"
+        }
+    ]
+}

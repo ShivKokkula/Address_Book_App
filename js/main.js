@@ -3,54 +3,40 @@ let addressBookDataObj = {};
 
 window.addEventListener('DOMContentLoaded',(event) => {
     const name = document.querySelector('#full-name');
-    const nameError = document.querySelector('.error-text');
     name.addEventListener('input', function(){
         try {
-            (new AddressBookData()).name = name.value;
-            nameError.textContent = "";
+            checkFullName(name.value);
+            setTextvalue('.error-text',"");
         } catch (e) {
-            nameError.textContent = e;
+            setTextvalue('.error-text',e);
         }
         if (!name.value || name.value == null || name.value == "" || name.value.length == 0){
-            nameError.textContent = "";
+            setTextvalue('.error-text',"");
+            return;
         }
     });
 
     const phoneNum = document.querySelector('#phone-number');
-    const phoneNumError = document.querySelector('.error-tel');
-
     phoneNum.addEventListener('input',function(){
-        let phoneNumRegex1 = RegExp('[5-9]{1}[0-9]{9}');
-        let phoneNumRegex2 = RegExp('[5-9]{1}[0-9]{11}');
-        let phoneNumRegex3 = RegExp('[+]{1}[5-9]{1}[0-9]{11}');
-
-        if (phoneNumRegex3.test(phoneNum.value) && phoneNum.value.length == 13) {
-            phoneNumError.textContent = "";
-        } else if(phoneNumRegex2.test(phoneNum.value) && phoneNum.value.length == 12){
-            phoneNumError.textContent = "";
-        } else if(phoneNumRegex1.test(phoneNum.value) && phoneNum.value.length == 10){
-            phoneNumError.textContent = "";
-        } else if (!phoneNum.value || phoneNum.value == null || phoneNum.value == "" || phoneNum.value.length == 0){
-            phoneNumError.textContent = "";
-        }  
-        else {
-            phoneNumError.textContent = "Invalid Phone number"
+        try {
+            checkPhoneNum(phoneNum.value);
+            setTextvalue('.error-tel',"");
+        } catch (e) {
+            setTextvalue('.error-tel',e);
         }
     });
 
     const address = document.querySelector('#address');
-    const addressError = document.querySelector('.error-address');
-
     address.addEventListener('input',function(){
-        let addressRegex = RegExp('[5-9]{1}[0-9]{9}');
-
-        if (addressRegex.test(address.value)) {
-            addressError.textContent = ""; 
-        }else if (!address.value || address.value == null || address.value == "" || address.value.length == 0){
-            addressError.textContent = "";
-        } else {
-            addressError.textContent = "Invalid address";
+        try {
+            checkAddress(address);
+            setTextvalue('.error-address',"");
+        } catch (e) {
+            setTextvalue('.error-address',e);
         }
+        if (!address.value || address.value == null || address.value == "" || address.value.length == 0){
+            setTextvalue('.error-address',e);
+        } 
     });
 
     checkForUpdate();
@@ -70,6 +56,7 @@ const save = (event) =>{
 }
 
 const setAddressBookObjt = () => {
+    if(!isUpdate) addressBookDataObj.id = createNewContactId();
     addressBookDataObj._name = document.querySelector('#full-name').value;
     addressBookDataObj._phoneNum = document.querySelector('#phone-number').value;
     addressBookDataObj._address = document.querySelector('#address').value;
@@ -81,15 +68,15 @@ const setAddressBookObjt = () => {
 function createandUpdateStorage() {
     let addressBookContactList = JSON.parse(localStorage.getItem('AddressBookContacts'));
     if (addressBookContactList) {
-        let addBookData = addressBookContactList.find(contact => contact._id == addressBookDataObj._id);
+        let addBookData = addressBookContactList.find(contact => contact.id == addressBookDataObj.id);
         if (!addBookData) {
-            addressBookContactList.push(createAddressBookContactData());
+            addressBookContactList.push(addressBookDataObj);
         } else {
-            const index = addressBookContactList.map(contact => contact._id).indexOf(addBookData._id);
-            addressBookContactList.splice(index,1,createAddressBookContactData(addBookData._id));
+            const index = addressBookContactList.map(contact => contact.id).indexOf(addBookData.id);
+            addressBookContactList.splice(index,1,addressBookDataObj);
         }
     } else {
-        addressBookContactList = [createAddressBookContactData()];
+        addressBookContactList = [addressBookDataObj];
     }
 
     alert(addressBookContactList.toString());
