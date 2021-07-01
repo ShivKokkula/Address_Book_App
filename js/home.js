@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
     addressBookList = getContactDetailsFromStorage();
     document.querySelector('.contact-count').textContent = addressBookList.length;
     createInnerHTML();
+    localStorage.removeItem('editcontact');
 });
 
 const getContactDetailsFromStorage = () =>{
@@ -60,5 +61,5 @@ const update = (node) => {
     let addBookData = addressBookList.find(contact => contact._id == node.id);
     if(!addBookData) return;
     localStorage.setItem('editcontact',JSON.stringify(addBookData));
-    window.location.replace("../pages/address_book_form.html");
+    window.location.replace(site_properties.adddress_book_form_page);
 }

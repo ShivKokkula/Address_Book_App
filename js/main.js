@@ -56,43 +56,77 @@ window.addEventListener('DOMContentLoaded',(event) => {
     checkForUpdate();
 });
 
-const save = () =>{
+const save = (event) =>{
+    event.preventDefault();
+    event.stopPropagation();
     try {
-        let addressBookContact = createAddressBookContact();
-        createandUpdateStorage(addressBookContact);
+        setAddressBookObjt()
+        createandUpdateStorage();
+        resetForm();
+        window.location.replace(site_properties.home_page);
     } catch (e) {
         return;
     }
 }
 
-const createAddressBookContact = () => {
-    let AddressBookContact = new AddressBookData();
+const setAddressBookObjt = () => {
+    addressBookDataObj._name = document.querySelector('#full-name').value;
+    addressBookDataObj._phoneNum = document.querySelector('#phone-number').value;
+    addressBookDataObj._address = document.querySelector('#address').value;
+    addressBookDataObj._city = document.querySelector('#city').value;
+    addressBookDataObj._state = document.querySelector('#state').value;
+    addressBookDataObj._zipcode = document.querySelector('#zipcode').value;
+}
+ 
+function createandUpdateStorage() {
+    let addressBookContactList = JSON.parse(localStorage.getItem('AddressBookContacts'));
+    if (addressBookContactList) {
+        let addBookData = addressBookContactList.find(contact => contact._id == addressBookDataObj._id);
+        if (!addBookData) {
+            addressBookContactList.push(createAddressBookContactData());
+        } else {
+            const index = addressBookContactList.map(contact => contact._id).indexOf(addBookData._id);
+            addressBookContactList.splice(index,1,createAddressBookContactData(addBookData._id));
+        }
+    } else {
+        addressBookContactList = [createAddressBookContactData()];
+    }
+
+    alert(addressBookContactList.toString());
+    localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookContactList));
+} 
+
+const createAddressBookContactData =(id) => {
+    let addBookData = new AddressBookData();
+    if (!id) {
+        addBookData.id = createNewContactId();
+    } else {
+        addBookData.id = id;
+    }
+    setAddressBookDate(addBookData);
+    return addBookData;
+}
+
+const createNewContactId = () => {
+    let contactID = localStorage.getItem('ContactID');
+    contactID = !contactID ? 1 : (parseInt(contactID) + 1).toString();
+    localStorage.setItem('ContactID',contactID);
+    return contactID;
+}
+
+const setAddressBookDate = (addBookData) =>{
     try {
-        AddressBookContact.name = document.querySelector('#full-name').value;
+        addBookData.name = addressBookDataObj._name;
     } catch (e) {
         setTextvalue('.error-text',e);
         throw e;
     }
-    AddressBookContact._id = new Date().getTime();
-    AddressBookContact.phoneNum = document.querySelector('#phone-number').value;
-    AddressBookContact.address = document.querySelector('#address').value;
-    AddressBookContact.city = document.querySelector('#city').value;
-    AddressBookContact.state = document.querySelector('#state').value;
-    AddressBookContact.zipcode = document.querySelector('#zipcode').value;
-    alert(AddressBookContact.toString());
-    return AddressBookContact;
-} 
-function createandUpdateStorage(addressBookContact) {
-    let addressBookContactList = JSON.parse(localStorage.getItem('AddressBookContacts'));
-
-    if (addressBookContactList != undefined) {
-        addressBookContactList.push(addressBookContact);
-    } else {
-        addressBookContactList = [addressBookContact];
-    }
-    alert(addressBookContactList.toString());
-    localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookContactList));
-} 
+    addBookData.phoneNum = addressBookDataObj._phoneNum;
+    addBookData.address = addressBookDataObj._address;
+    addBookData.city = addressBookDataObj._city;
+    addBookData.state = addressBookDataObj._state;
+    addBookData.zipcode = addressBookDataObj._zipcode;
+}
 
 const checkForUpdate = () =>{
     const addressBookDataJSON = localStorage.getItem('editcontact');
@@ -100,6 +134,14 @@ const checkForUpdate = () =>{
     if(!isUpdate) return;
     addressBookDataObj = JSON.parse(addressBookDataJSON);
     setForm();
+}
+const resetForm = () => {
+    setValue('#full-name', '');
+    setValue('#phone-number','');
+    setValue('#address', '');
+    setValue('#city', '');
+    setValue('#state', '');
+    setValue('#zipcode', '');
 }
 
 const setForm = () => {
