@@ -73,9 +73,22 @@ const remove = (node) => {
     if(!addBookData) return;
     const index = addressBookList.map(contact => contact.id).indexOf(addBookData.id);
     addressBookList.splice(index,1);
-    localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookList));
-    document.querySelector('.contact-count').textContent = addressBookList.length;
-    createInnerHTML();
+
+    if (site_properties.use_local_storage.match("true")) {
+        localStorage.setItem('AddressBookContacts',JSON.stringify(addressBookList));
+        document.querySelector('.contact-count').textContent = addressBookList.length;
+        createInnerHTML();
+    } else {
+        const deleteURL = site_properties.server_url + addBookData.id.toString();
+        makeServiceCall("DELETE", deleteURL, true)
+        .then(responseText => {
+            document.querySelector('.emp-count').textContent = addressBookList.length;
+            createInnerHTML();
+        })
+        .catch(error => {
+            console.log("DELETE Error status: " + JSON.stringify(error));
+        });
+    } 
 }
 
 const update = (node) => {

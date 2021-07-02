@@ -2,48 +2,12 @@
   "AddressBookDB": [
     {
       "id": 1,
-      "_name": "Mark",
+      "_name": "Sunny",
       "_phoneNum": "9797979799",
       "_address": "9797979799",
-      "_city": "Mumbai",
-      "_state": "Maharashtra",
-      "_zipcode": "421305"
-    },
-    {
-      "id": 2,
-      "_name": "John",
-      "_phoneNum": "9797979799",
-      "_address": "9797979799",
-      "_city": "Pune",
-      "_state": "Maharashtra",
-      "_zipcode": "421305"
-    },
-    {
-      "id": "3",
-      "_name": "Sagar",
-      "_phoneNum": "97979797977",
-      "_address": "kamajak",
       "_city": "mumbai",
       "_state": "maharashtra",
-      "_zipcode": "443322"
-    },
-    {
-      "id": "4",
-      "_name": "Monnu",
-      "_phoneNum": "997979797967",
-      "_address": "sdadad",
-      "_city": "mumbai",
-      "_state": "delhi",
-      "_zipcode": "666633"
-    },
-    {
-      "id": "5",
-      "_name": "Shahah",
-      "_phoneNum": "989898979",
-      "_address": "797979797",
-      "_city": "mumbai",
-      "_state": "maharashtra",
-      "_zipcode": "42134"
+      "_zipcode": "333333"
     }
   ]
 }

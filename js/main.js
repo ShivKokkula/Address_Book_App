@@ -19,24 +19,27 @@ window.addEventListener('DOMContentLoaded',(event) => {
     const phoneNum = document.querySelector('#phone-number');
     phoneNum.addEventListener('input',function(){
         try {
-            checkPhoneNum(phoneNum.value);
+            checkPhoneNum(phoneNum);
             setTextvalue('.error-tel',"");
         } catch (e) {
             setTextvalue('.error-tel',e);
         }
+        if (!phoneNum.value || phoneNum.value == null || phoneNum.value == "" || phoneNum.value.length == 0){
+            setTextvalue('.error-tel',"");
+        }
     });
 
     const address = document.querySelector('#address');
-    address.addEventListener('input',function(){
+    address.addEventListener('input',function(){ 
         try {
-            checkAddress(address);
+            checkAddress(address.value);
             setTextvalue('.error-address',"");
         } catch (e) {
             setTextvalue('.error-address',e);
         }
         if (!address.value || address.value == null || address.value == "" || address.value.length == 0){
-            setTextvalue('.error-address',e);
-        } 
+            setTextvalue('.error-address',"");
+        }
     });
 
     checkForUpdate();
